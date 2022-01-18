@@ -1,6 +1,11 @@
 public class Tag {
 
-        public int id;
+        public long id;
         public String name;
-    }
+
+//    public Tag(long id, String name) {
+//        this.id = id;
+//        this.name = name;
+//    }
+}
 
