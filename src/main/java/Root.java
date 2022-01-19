@@ -20,12 +20,10 @@ public class Root implements ToJson {
                 this.photoUrls = photoUrls;
                 this.tags = tags;
                 this.status = status;
-
-                this.category.id = category.id;
-                this.category.name = category.name;
-        }
-
-
+//
+//                this.category.id = category.id;
+//                this.category.name = category.name;
+       }
 
     public Root() {
 

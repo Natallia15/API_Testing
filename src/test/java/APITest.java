@@ -59,7 +59,7 @@ public class APITest {
                System.out.println(pets.toJson());
             }
 
-        Root pet1 = new Root(12222, new Category(1,"dog"),"Bobic",null,null,"sold");
+       /* Root pet1 = new Root(12222, new Category(1,"dog"),"Bobic",null,null,"sold");
     @Test
     public void third(){
         Root pets = given()
@@ -72,7 +72,7 @@ public class APITest {
                 .post("/pet")
                 .as(Root.class);
         System.out.println(pets.name);
-    }
+    }*/
     @Test
     public void exam_9() {
         Root_1 pets = given()
@@ -121,5 +121,22 @@ public class APITest {
         Assert.assertEquals(statusCode, 200);
         System.out.println("The status code recieved: " + statusCode);
     }
+    @Test
+    public void getUserByLogin(){
+        Root_3 user = given()
+                .contentType(ContentType.JSON)
+                .baseUri("https://petstore.swagger.io/v2")
+                .when()
+                .get(
+                        "/user/login")
+                //.then()
+                //.statusCode(200)
+                .body()
+                //.prettyPrint();
+                .as(Root_3.class);
 
-}
+            System.out.println(user.toJson());
+        }
+    }
+
+
