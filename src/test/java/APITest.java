@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
  import com.fasterxml.jackson.databind.ObjectMapper; // version 2.11.1
  import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
 import java.util.ArrayList;
+import java.util.List;
 
 import static io.restassured.RestAssured.*;
 
@@ -21,6 +22,7 @@ public class APITest {
               .get("pet/findByStatus?status=sold")
                //.then()
                //.statusCode(200)
+
                .body()
                //.prettyPrint();
                 .as(Root[].class);
@@ -59,7 +61,7 @@ public class APITest {
                System.out.println(pets.toJson());
             }
 
-       /* Root pet1 = new Root(12222, new Category(1,"dog"),"Bobic",null,null,"sold");
+       Root pet1 = new Root(12222, new Category(5, "dfg"),"Bobic",null,null,"sold");
     @Test
     public void third(){
         Root pets = given()
@@ -72,33 +74,38 @@ public class APITest {
                 .post("/pet")
                 .as(Root.class);
         System.out.println(pets.name);
-    }*/
-    @Test
+    }
+
+    Root_4 users = new Root_4(0,"string","string","string","string","string","string", 0);
+    Root_4 [] gg = new Root_4[]{users};
+  @Test
     public void exam_9() {
-        Root_1 pets = given()
+
+        Root_1 response = given()
                 .contentType(ContentType.JSON)
                 .baseUri("https://petstore.swagger.io/v2")
-
-                .body("[\n" +
-                        "  {\n" +
-                        "    \"id\": 0,\n" +
-                        "    \"username\": \"string\",\n" +
-                        "    \"firstName\": \"string\",\n" +
-                        "    \"lastName\": \"string\",\n" +
-                        "    \"email\": \"string\",\n" +
-                        "    \"password\": \"string\",\n" +
-                        "    \"phone\": \"string\",\n" +
-                        "    \"userStatus\": 0\n" +
-                        "  }\n" +
-                        "]")
+                .body(gg)
                 .when()
                 .post("/user/createWithArray")
                 .as(Root_1.class);
-        System.out.println(pets.toJson());
+        System.out.println(response.code +" "+ response.message);
+      Assert.assertEquals(response.code, 200);
+      Assert.assertEquals(response.message, "ok");
     }
+
     @Test
     public void exam() {
         RequestSpecification request = RestAssured.given();
+       /* List<String> listNames = new ArrayList<>();
+        listNames.add("Andrey");
+        listNames.add("Andrey");
+        listNames.add("Andrey");
+        listNames.add("Andrey");
+        for(int i = 0; i < listNames.size(); i ++){
+            Client currentClient = new Client(listNames.get(i));
+            request.body(currentClient);
+        }
+        //RequestSpecification request = RestAssured.given();*/
         request.header("Content-Type", "application/json");
                request.body("[\n" +
                 "  {\n" +
